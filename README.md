@@ -3,6 +3,11 @@
 Load/unload ENV varibles from .env file for fish shell.
 
 ## INSTALATION
+Create function die if not exist
+
+```fish
+mkdir -p ~/.config/fish/functions
+```
 
 Copy *.fish files from this repo to ~/.config/fish/functions:
 
