@@ -3,7 +3,7 @@
 Load/unload ENV varibles from .env file for fish shell.
 
 ## INSTALATION
-Create function die if not exist
+Create function if not exist
 
 ```fish
 mkdir -p ~/.config/fish/functions
@@ -15,15 +15,10 @@ Copy *.fish files from this repo to ~/.config/fish/functions:
 cp (pwd)/*.fish ~/.config/fish/functions
 ```
 
-## load
+## USE
 
-Loads all ENV variables from .env file in current directory if exists.
+* `load` Loads all ENV variables from .env file in current directory if exists.
 
-## unload
+* `unload` Removes all ENV variables taken from .env file in current directory if exists.
 
-Removes all ENV variables taken from .env file in current directory if exists.
-
-## cde
-
-The same as `cd` but runs first unload then cd and load after all.
-Use this alias for auto load/unload ENV variables.
+* `cde` Same as `cd` but runs first unload then cd and load after all. Use this alias for auto load/unload ENV variables.
