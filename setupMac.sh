@@ -13,6 +13,7 @@ brew install --cask visual-studio-co
 brew install --cask gitkraken
 brew install --cask pycharm
 brew install --cask bitwarden
+brew install flycut
 brew install colima && colima start
 brew install docker docker-compose
 mkdir -p ~/.docker/cli-plugins
