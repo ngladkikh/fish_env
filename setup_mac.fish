@@ -89,11 +89,16 @@ function setup_mac
             case 10
                 pipx install pipenv
             case 11
+                echo "Add leoafarias/fvm package repository..."
                 brew tap leoafarias/fvm
+                echo "Installing Flutter package manager fvm..."
                 install_with_brew fvm
+                echo "Installing FlutterSDK..."
                 fvm install stable
                 fvm global stable
+                echo "Configure FlutterSDK PATH"
                 fish -c fish_add_path -a ~/fvm/default/bin/
+                echo "Flutter installation complete."
             case 12
                 install_with_brew obsidian cask
             case 13
