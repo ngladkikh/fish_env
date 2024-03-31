@@ -26,35 +26,49 @@ install_with_brew() {
         if brew list --cask "$name" &> /dev/null; then
             echo "$name is already installed."
         else
-            echo "Installing $name..."
-            brew install --cask "$name"
+            if brew install --cask "$name"; then
+                echo "$name successfully installed."
+            else
+                echo "Failed to install $name. Please check for errors."
+                exit 1
+            fi
         fi
     else
         # Check and install regular packages
         if brew list "$name" &> /dev/null; then
             echo "$name is already installed."
         else
-            echo "Installing $name..."
-            brew install "$name"
+            if brew install "$name"; then
+                echo "$name successfully installed."
+            else
+                echo "Failed to install $name. Please check for errors."
+                exit 1
+            fi
         fi
     fi
 }
 
-echo "Select the tools you want to install (separate choices with spaces):"
+echo "Seliect the tools you want to install (separate choices with spaces):"
+echo "0. Install all"
 echo "1. Git"
 echo "2. Visual Studio Code"
 echo "3. Docker"
 echo "4. PyCharm"
-echo "5. GitKraken"
-echo "6. bitwarden"
-echo "7. flycut"
+echo "5. GitKraken (Git UI)"
+echo "6. bitwarden (Password manager)"
+echo "7. flycut (Clipboard manager)"
 echo "8. PipX"
 echo "9. Poetry"
 echo "10. PipEnv"
 echo "11. Fish"
 echo "12. Flutter SDK"
-echo "13. Obsidian"
+echo "13. Obsidian (Local notes storage)"
+echo "14. Calibre (Book management tool)"
 read -p "Enter your choices: " choices
+
+if [[ $choices == *"0"* ]]; then
+    choices="1 2 3 4 5 6 7 8 9 10 11 12 13 14"
+fi
 
 for choice in $choices; do
     case $choice in
@@ -115,6 +129,9 @@ for choice in $choices; do
             ;;
         13)
             install_with_brew obsidian cask
+            ;;
+        14)
+            install_with_brew calibre cask
             ;;
         *)
             echo "Invalid option: $choice"
