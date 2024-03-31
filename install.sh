@@ -29,7 +29,7 @@ if ! command -v fish &> /dev/null; then
 
     # install fuctions in fish
     mkdir -p ~/.config/fish/functions;
-    cp $(pwd)/*.fish ~/.config/fish/functions
 else
     echo "Fish shell is already installed."
 fi
+cp $(pwd)/*.fish ~/.config/fish/functions
