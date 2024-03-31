@@ -53,6 +53,7 @@ echo "9. Poetry"
 echo "10. PipEnv"
 echo "11. Fish"
 echo "12. Flutter SDK"
+echo "13. Obsidian"
 read -p "Enter your choices: " choices
 
 for choice in $choices; do
@@ -111,6 +112,9 @@ for choice in $choices; do
             fvm install stable
             fvm global stable
             fish -c fish_add_path -a ~/fvm/default/bin/
+            ;;
+        13)
+            install_with_brew obsidian cask
             ;;
         *)
             echo "Invalid option: $choice"
