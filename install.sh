@@ -19,17 +19,39 @@ fi
 if ! command -v fish &> /dev/null; then
     echo "Installing Fish shell..."
     brew install fish
-    # Add Fish to the list of acceptable shells
-    sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
     # Register brew in fish
-    echo 'eval (/opt/homebrew/bin/brew shellenv)' >> ~/.config/fish/config.fish
     fish -c fish_add_path /opt/homebrew/bin
     # Change the user's default shell to Fish
     chsh -s /usr/local/bin/fish
-
-    # install fuctions in fish
-    mkdir -p ~/.config/fish/functions;
 else
     echo "Fish shell is already installed."
 fi
+
+# Find the actual path to the Fish shell
+fish_path=$(which fish)
+
+if ! grep -q "$fish_path" /etc/shells; then
+    echo "Adding fish path to the shells"
+    sudo sh -c "echo $fish_path >> /etc/shells"
+else
+    echo "Fish path found in /etc/shells"
+fi
+
+if [ "$SHELL" != "$fish_path" ]; then
+    echo "Change the default shell to Fish"
+    chsh -s "$fish_path"
+else
+    echo "Default shell is Fish"
+fi
+
+if ! grep -q 'eval (/opt/homebrew/bin/brew shellenv)' ~/.config/fish/config.fish; then
+    echo "Register homebrew bin in config.fish"
+    echo 'eval (/opt/homebrew/bin/brew shellenv)' >> ~/.config/fish/config.fish
+else
+    echo "Homebrew bin registered in config.fish"
+fi
+
+echo "Install fuctions in fish..."
+mkdir -p ~/.config/fish/functions;
 cp $(pwd)/*.fish ~/.config/fish/functions
+echo "DONE"
