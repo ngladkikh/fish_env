@@ -41,11 +41,12 @@ function setup_mac
     echo "6. bitwarden (Password manager)"
     echo "7. flycut (Clipboard manager)"
     echo "8. PipX"
-    echo "9. Poetry"
-    echo "10. PipEnv"
+    echo "9. Poetry (with PipX)"
+    echo "10. PipEnv (with PipX)"
     echo "11. Flutter SDK"
     echo "12. Obsidian (Local notes storage)"
     echo "13. Calibre (Book management tool)"
+    echo "14. PyEnv (Python management tool)"
 
     echo "Enter your choices: "
     read -l choices
@@ -103,6 +104,10 @@ function setup_mac
                 install_with_brew obsidian cask
             case 13
                 install_with_brew calibre cask
+            case 14
+                install_with_brew pyenv
+                set -Ux PYENV_ROOT $HOME/.pyenv
+                fish_add_path $PYENV_ROOT/bin
             case '*'
                 echo "Invalid option: $choice"
         end
