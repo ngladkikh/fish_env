@@ -65,11 +65,11 @@ function setup_mac
             case 2
                 install_with_brew visual-studio-code cask
             case 3
+                echo "Install docker"
+                install_with_brew docker
                 echo "Installing Colima..."
                 install_with_brew colima
                 colima start
-                echo "Install docker"
-                install_with_brew docker
                 echo "Install docker-compose"
                 install_with_brew docker-compose
                 echo "Setup docker-compose plugin to be recognizable"
