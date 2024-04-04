@@ -1,5 +1,9 @@
 function load 
-    set -l file .env
+    set -l file (string trim $argv[1]) # Trim whitespace from the first argument
+    if test -z "$file" # Check if the file variable is empty
+        set file .env # Default to ".env" if no argument is provided
+    end
+
     if not test -e $file
         return
     end
