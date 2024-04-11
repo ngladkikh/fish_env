@@ -47,6 +47,7 @@ function setup_mac
     echo "12. Obsidian (Local notes storage)"
     echo "13. Calibre (Book management tool)"
     echo "14. PyEnv (Python management tool)"
+    echo "15. k8slens (K8S Cluster management UI)"
 
     echo "Enter your choices: "
     read -l choices
@@ -108,6 +109,8 @@ function setup_mac
                 install_with_brew pyenv
                 set -Ux PYENV_ROOT $HOME/.pyenv
                 fish_add_path $PYENV_ROOT/bin
+            case 15
+                install_with_brew lens cask
             case '*'
                 echo "Invalid option: $choice"
         end
