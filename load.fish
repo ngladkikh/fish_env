@@ -9,9 +9,10 @@ function load
     end
     while read -la line
         if not string match -q "#*" $line
-          set -l env_str (string split = $line)
-          if test -n "$env_str[1]"
-              set -xg (string trim $env_str[1]) (string trim $env_str[2])
+          set -l key (string trim (string split -m1 "=" $line)[1])
+          set -l value (string trim (string split -m1 "=" $line)[2..])
+          if test -n "$key"
+              set -xg $key (string join "=" $value | string trim)
           end
         end
     end < $file
